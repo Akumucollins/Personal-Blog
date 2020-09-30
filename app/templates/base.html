@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Blog</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+</head>
+
+<body>
+    <nav class="mb-1 navbar navbar-expand-lg navbar-warning">
+        <a class="navbar-brand" href="{{(url_for('main.index'))}}" style="font-weight: bolder;">Personal<span
+                style="color: #fbb33f;">Blogs</span> </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-333"
+            aria-controls="navbarSupportedContent-333" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent-333">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="{{(url_for('main.new_post'))}}">Home
+                        <span class="sr-only">(current)</span>
+                    </a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false"><i class="fas fa-blog"></i>&nbsp;Blogs
+                    </a>
+                    <div class="dropdown-menu dropdown-default text-center"
+                        aria-labelledby="navbarDropdownMenuLink-333">
+                        <a class="dropdown-item text-warning" href="#">
+                            <i class="fas fa-star-of-life mr-2"></i><strong>Life</strong>
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item text-warning" href="#">
+                            <i class="fas fa-users mr-2"></i><strong>Society</strong>
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item text-warning" href="#">
+                            <i class="fas fa-book-reader mr-2"></i><strong>Education</strong>
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item text-warning" href="#">
+                            <i class="fab fa-old-republic mr-2"></i><strong>Politics</strong>
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item text-warning" href="#">
+                            <i class="fas fa-running mr-2"></i><strong>Sports</strong>
+                        </a>
+                    </div>
+                </li>
+            </ul>
+            <ul class="navbar-nav ml-auto nav-flex-icons">
+                {% if current_user.is_authenticated %}
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-user">&nbsp;<b class="text-info">{{current_user.username}}</b></i>
+                    </a>
+
+                    <div class="dropdown-menu dropdown-menu-right dropdown-default text-center"
+                        aria-labelledby="navbarDropdownMenuLink-333">
+                        <a href="{{url_for('main.profile',uname=current_user.username)}}" class="text-warning ">
+                            <i class="fas fa-id-card-alt mr-2"></i><strong class="">Profile</strong>
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="{{url_for('auth.logout')}}" class="text-warning">
+                            <i class="fas fa-sign-out-alt mr-2"></i><strong>Logout</strong>
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="text-warning">
+                            <i class="fas fa-cogs mr-2"></i><strong>Setting</strong>
+                        </a>
+                    </div>
+                </li>
+                {% else %}
+                <li class="nav-item">
+                    <a href="{{url_for('auth.login')}}" class="nav-link waves-effect waves-light">
+                        <i class="fas fa-sign-in-alt mt-2"></i><strong class="mr-2">Sign In</strong>
+                    </a>
+                </li>
+                {%endif%}
+            </ul>
+        </div>
+    </nav>
+
+    {% block content %}
+
+    {% endblock %}
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

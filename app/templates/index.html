@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% import 'macros.html' as macro%}
+
+{% block styles %}{{ super() }}
+<link rel="stylesheet" href="{{url_for('static',filename='css/index.css')}}">
+{% endblock %}
+
+{% block content %}
+<div class="row text-center mt-2">
+    <div class="col-lg-8 col-md-10 mx-auto">
+        <div class="cards">
+            {% for post in posts %}
+            <div class="card">
+                <div class="card-header">
+                    <a href="post/new/{{ post.id }}">
+                        <h2 class="title">👨‍💻&nbsp;{{ post.title }}</h2>
+                    </a>
+                </div>
+                <div class="card-body">
+                    <div class="card-title">
+                        <h3>🗞️&nbsp;{{ post.topic }}</h3>
+                    </div>
+                    <div class="card-content">
+                        <h5 class="text-warning">📰&nbsp;{{ post.content }}</h5>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <strong>
+                        <p>📆&nbsp;Posted by <b class="text-info">{{ post.username }}</b>  on  {{ post.date.strftime('%B %d, %Y') }}</p>
+                    </strong>
+                </div>
+            </div>
+            <br>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+<footer class="page-footer font-small blue mt-1">
+    <div class="footer-copyright text-center py-2">© 2020 Copyright:
+        <a href="https://mdbootstrap.com/">akumucollins</a>
+    </div>
+</footer>
+{% endblock %}
