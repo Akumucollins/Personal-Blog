@@ -17,7 +17,7 @@
 ---
 
 ## Live Link
-[View Site](https://akumucollins-pitches.herokuapp.com)
+[View Site]( https://akumublogger.herokuapp.com)
 
 ***
 
