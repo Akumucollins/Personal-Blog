@@ -8,6 +8,7 @@ class Config:
     SQLALCHEMY_DATABASE_URI ='postgresql+psycopg2://moringa:collins2000@localhost/personal_blog'
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     UPLOADED_PHOTOS_DEST ='app/static/photos'
+    QUOTE_API_BASE_URL = 'http://quotes.stormconsultancy.co.uk/random.json'
     
     #  email configurations
     MAIL_SERVER = 'smtp.gmail.com'

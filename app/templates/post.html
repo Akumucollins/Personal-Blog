@@ -1,12 +1,74 @@
-{% extends 'base.html'%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {% extends 'base.html'%}
 {% import "bootstrap/wtf.html" as wtf %}
 
 {% block content %}
-<br>
-<div class="container">
-    <div style="width: 60%; height:50%">
-        <br>
-        {{ wtf.quick_form(posts_form) }}
+<div class="container pt-5">
+    <div class="row">
+        <div class="col-md-6 mt-5">
+            <div class="card" style="position: relative">
+                <div class="card-header">
+                    <div class="card-title">
+                        <h2>Quote of the day.</h2>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <h2 class="quoted-author">{{ quote.author }}</h2>
+                    <p class="quoted-quote">{{ quote.quote }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="container">
+                <div style="width: 90%; height:190px">
+                    <br>
+                    {{ wtf.quick_form(posts_form) }}
+                </div>
+            </div>
+        </div>
     </div>
 </div>
+<br>
+<br><br>
+<!-- Footer -->
+<footer class="page-footer font-small blue mt-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 py-3">
+                <div class="mb-2 flex-center">
+                    <a class="fb-ic">
+                        <i class="fab fa-facebook-f fa-lg text-warning mr-md-5 mr-3 fa-2x"> </i>
+                    </a>
+                    <a class="tw-ic">
+                        <i class="fab fa-twitter fa-lg text-warning mr-md-5 mr-3 fa-2x"> </i>
+                    </a>
+                    <a class="gplus-ic">
+                        <i class="fab fa-google-plus-g fa-lg text-warning mr-md-5 mr-3 fa-2x"> </i>
+                    </a>
+                    <a class="li-ic">
+                        <i class="fab fa-linkedin-in fa-lg text-warning mr-md-5 mr-3 fa-2x"> </i>
+                    </a>
+                    <a class="ins-ic">
+                        <i class="fab fa-instagram fa-lg text-warning mr-md-5 mr-3 fa-2x"> </i>
+                    </a>
+                    <a class="pin-ic">
+                        <i class="fab fa-pinterest fa-lg text-warning fa-2x"> </i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer-copyright text-center py-3">© 2020 Copyright:
+        <a href="https://mdbootstrap.com/"> akumucollins</a>
+    </div>
+</footer>
 {% endblock %}
+</body>
+</html>

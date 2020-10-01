@@ -12,10 +12,11 @@ def index():
     """ 
     View root page function that returns index page 
     """
-    posts = Post.query.all()
+    # posts = Post.query.all()
+    quote = get_quotes()
     
     title = 'WELCOME TO PERSONAL BLOGS'
-    return render_template('index.html', title = title, posts= posts)
+    return render_template('index.html', title = title, quote= quote)
 
 @main.route('/user/<uname>/update/pic',methods= ['POST'])
 @login_required
@@ -63,6 +64,7 @@ def new_post():
     View Post function that returns the Post page and data
     """
     form = PostForm()
+    quote = get_quotes()
 
     if form.validate_on_submit():
 
@@ -77,16 +79,16 @@ def new_post():
         db.session.commit()
 
         title='New Blog Posted'
-        return redirect(url_for('main.all'))
+        return redirect(url_for('main.index'))
 
-    return render_template('post.html',posts_form= form)
+    return render_template('post.html',posts_form= form, quote= quote)
 
 @main.route('/Post/posts', methods=['GET', 'POST'])
 @login_required
 def posts():
     posts = Post.query.all()
-    quote = get_quotes()
-    return render_template('posts.html', posts=posts, quote=quote)
+   
+    return render_template('posts.html', posts=posts)
 
 @main.route('/view/<int:id>', methods=['GET', 'POST'])
 @login_required
@@ -97,7 +99,7 @@ def view(id):
     if comment_form.validate_on_submit():
         new_comment = Comment(post_id=id, comment=comment_form.comment.data, author=current_user)
         new_comment.save_comment()
-    return render_template('post.html', post=post, post_comments=post_comments, comment_form=comment_form)
+    return render_template(' view.html', post=post, post_comments=post_comments, comment_form=comment_form)
 
 @main.route('/post/delete/<int:id>', methods=['GET', 'POST'])
 @login_required
@@ -167,5 +169,5 @@ def delete_comment(post_id):
     db.session.delete(comment)
     db.session.commit()
 
-    return redirect(url_for('main.post', comment=comment, post=post, post_id=post_id))      
+    return redirect(url_for('main.posts', comment=comment, post=post, post_id=post_id))      
 

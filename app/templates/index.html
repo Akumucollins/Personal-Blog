@@ -1,58 +1,48 @@
 {% extends 'base.html' %}
-{% block styles %}{{ super() }}
-<link rel="stylesheet" href="{{url_for('static',filename='css/index.css')}}">
-{% endblock %}
 
 {% block content %}
-{% for post in posts %}
-<div class="body-content">
-    <div class="container">
-        <div class="jumbotron media bg-light">
-            <div class="media-left media-top">
-                <img src="https://avataaars.io/?avatarStyle=Circle&topType=Hat&accessoriesType=Blank&facialHairType=Blank&clotheType=BlazerShirt&eyeType=EyeRoll&eyebrowType=UnibrowNatural&mouthType=Smile&skinColor=Black"
-                    class="media-object" style="width:180px;background-color:inherit;">
-            </div>
-            <div class="media-body pt-2">
-                <h3 class="media-heading"><a href="post/new/{{ posts.id }}">{{ post.title }}</a></h4>
-                <h4 class="media-heading">{{ post.topic }}</h6>
-                <h5 class="media-content">{{ post.content }}</p>
-                    <h6 class="media-name">Posted by ~ {{ post.username }}</h6>
-                    <p class="media-date">Posted on ~ {{ post.date.strftime('%B %d, %Y') }}</p>
-            </div>
-        </div>
+<div class="container-fluid"
+    style="background-image: linear-gradient(rgba(0,0,0,.6), rgba(0,0,0,.6)), url('https://images.unsplash.com/photo-1472289065668-ce650ac443d2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80');background-repeat: no-repeat;background-size: cover;background-position: center center;height: 70vh;">
+    <div class="welcome text-light text-center pt-5">
+        <h1 class="title mt-5">
+            <strong>Personal Blog Website</strong>
+        </h1>
+        <h2 class="subtitle mt-5">
+            <small>Feel free to Signup, create a blog, create a comment, view other peoples blogs and comments!!</small>
+        </h2>
     </div>
 </div>
-{% endfor %}
-<!-- Footer -->
-<footer class="page-footer font-small blue">
+<footer class="page-footer font-small yellow pt-3">
     <div class="container">
         <div class="row">
             <div class="col-md-12 py-3">
-                <div class="mb-2 flex-center">
+                <div class="flex-center">
                     <a class="fb-ic">
-                        <i class="fab fa-facebook-f fa-lg text-warning mr-md-5 mr-3 fa-2x"> </i>
+                        <i class="fab fa-facebook-f fa-lg text-dark mr-md-5 mr-3 fa-2x"> </i>
                     </a>
                     <a class="tw-ic">
-                        <i class="fab fa-twitter fa-lg text-warning mr-md-5 mr-3 fa-2x"> </i>
+                        <i class="fab fa-twitter fa-lg text-dark mr-md-5 mr-3 fa-2x"> </i>
                     </a>
                     <a class="gplus-ic">
-                        <i class="fab fa-google-plus-g fa-lg text-warning mr-md-5 mr-3 fa-2x"> </i>
+                        <i class="fab fa-google-plus-g fa-lg text-dark mr-md-5 mr-3 fa-2x"> </i>
                     </a>
                     <a class="li-ic">
-                        <i class="fab fa-linkedin-in fa-lg text-warning mr-md-5 mr-3 fa-2x"> </i>
+                        <i class="fab fa-linkedin-in fa-lg text-dark mr-md-5 mr-3 fa-2x"> </i>
                     </a>
                     <a class="ins-ic">
-                        <i class="fab fa-instagram fa-lg text-warning mr-md-5 mr-3 fa-2x"> </i>
+                        <i class="fab fa-instagram fa-lg text-dark mr-md-5 mr-3 fa-2x"> </i>
                     </a>
                     <a class="pin-ic">
-                        <i class="fab fa-pinterest fa-lg text-warning fa-2x"> </i>
+                        <i class="fab fa-pinterest fa-lg text-dark fa-2x"> </i>
                     </a>
                 </div>
             </div>
         </div>
     </div>
-    <div class="footer-copyright text-center py-3">© 2020 Copyright:
-        <a href="https://mdbootstrap.com/"> akumucollins</a>
+    <div class="footer-copyright text-center py-4">
+        <strong>© 2020 Copyright:
+            <a style="color: royalblue;" href="https://mdbootstrap.com/"> akumucollins</a>
+        </strong>
     </div>
 </footer>
 

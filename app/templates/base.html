@@ -16,10 +16,10 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
 </head>
 
-<body>
-    <nav class="mb-1 navbar navbar-expand-lg navbar-warning">
-        <a class="navbar-brand" href="{{(url_for('main.index'))}}" style="font-weight: bolder;">Personal<span
-                style="color: #fbb33f;">Blogs</span> </a>
+<body class="bg-warning">
+    <nav class="mb-1 navbar navbar-expand-lg navbar-light">
+        <a class="navbar-brand" href="{{(url_for('main.index'))}}"
+            style="font-weight: bolder;color:royalblue;">Personal<span style="color: #413624;">Blogs</span> </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-333"
             aria-controls="navbarSupportedContent-333" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -27,34 +27,32 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent-333">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="{{(url_for('main.new_post'))}}">Home
+                    <a class="nav-link" style="color: royalblue;" href="{{(url_for('main.new_post'))}}">
+                        <strong>Home</strong> 
                         <span class="sr-only">(current)</span>
                     </a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false"><i class="fas fa-blog"></i>&nbsp;Blogs
+                        aria-haspopup="true" aria-expanded="false"  style="color: royalblue;">
+                        <strong>Blogs</strong> 
                     </a>
-                    <div class="dropdown-menu dropdown-default text-center"
+                    <div class="dropdown-menu dropdown-default"
                         aria-labelledby="navbarDropdownMenuLink-333">
-                        <a class="dropdown-item text-warning" href="#">
-                            <i class="fas fa-star-of-life mr-2"></i><strong>Life</strong>
+                        <a class="dropdown-item text-warning" href="{{(url_for('main.posts'))}}">
+                            <i class="fas fa-binoculars mr-2"></i><strong>View Blogs</strong>
                         </a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item text-warning" href="#">
-                            <i class="fas fa-users mr-2"></i><strong>Society</strong>
+                            <i class="fas fa-folder-plus mr-2"></i></i><strong>Create a Blog</strong>
                         </a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item text-warning" href="#">
-                            <i class="fas fa-book-reader mr-2"></i><strong>Education</strong>
+                            <i class="fas fa-comment mr-2"></i><strong>Create a Comment</strong>
                         </a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item text-warning" href="#">
-                            <i class="fab fa-old-republic mr-2"></i><strong>Politics</strong>
-                        </a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item text-warning" href="#">
-                            <i class="fas fa-running mr-2"></i><strong>Sports</strong>
+                            <i class="fas fa-comments mr-2"></i><strong>View Comments</strong>
                         </a>
                     </div>
                 </li>
@@ -64,7 +62,7 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">
-                        <i class="fas fa-user">&nbsp;<b class="text-info">{{current_user.username}}</b></i>
+                        <i class="fas fa-user">&nbsp;<b style="color: royalblue;">{{current_user.username}}</b></i>
                     </a>
 
                     <div class="dropdown-menu dropdown-menu-right dropdown-default text-center"
