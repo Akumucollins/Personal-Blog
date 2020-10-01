@@ -111,20 +111,40 @@ class Post(db.Model):
         return f"Posts {self.id}','{self.date}')" 
         
 class Comment(db.Model):
+    '''
+    Comment class to define the feedback from users
+    '''
     __tablename__ = 'comments'
     id = db.Column(db.Integer, primary_key=True)
     comment = db.Column(db.Text())
     post_id = db.Column(db.Integer, db.ForeignKey('posts.id'))
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     date = db.Column(db.DateTime, default=datetime.utcnow)
+
     def save_comment(self):
+        '''
+        Function that saves a new comment given as feedback to a post
+        '''
         db.session.add(self)
         db.session.commit()
+
     @classmethod
     def get_comments(cls, post_id):
+        '''
+        Function that queries the Comments Table in the database and returns only information with the specified post id
+        Args:
+            post_id : specific post_id
+        Returns:
+            comments : all the information for comments with the specific post id
+        '''
         comments = Comment.query.filter_by(post_id=post_id).all()
         return comments
+
+    @classmethod
     def delete(self):
+        '''
+        Function that deletes a specific single comment from the comments table and database
+        '''
         db.session.delete(self)
         db.session.commit()
     def __repr__(self):
