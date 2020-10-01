@@ -79,7 +79,7 @@ def new_post():
         db.session.commit()
 
         title='New Blog Posted'
-        return redirect(url_for('main.view'))
+        return redirect(url_for('main.new_post'))
 
     return render_template('post.html',posts_form= form, quote= quote)
 
