@@ -40,6 +40,7 @@ class User(UserMixin, db.Model):
     pass_secure = db.Column(db.String(255))
     role_id = db.Column(db.Integer, db.ForeignKey('roles.id'))
     posts = db.relationship('Post', backref='username', lazy='dynamic')
+    comments = db.relationship('Comment', backref='username', lazy=True)
  
     @property
     def password(self):
@@ -66,6 +67,12 @@ class User(UserMixin, db.Model):
         '''
         db.session.add(self)
         db.session.commit()
+
+class Quotes:
+    def __init__(self, username, quote):
+        self.id = id
+        self.username = username
+        self.quote = quote        
     
 class Post(db.Model):
     '''
@@ -79,6 +86,7 @@ class Post(db.Model):
     content = db.Column(db.Text)
     date = db.Column(db.DateTime(250), default=datetime.utcnow)
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable = False)
+   
 
     def save_post(self):
         '''
@@ -88,17 +96,17 @@ class Post(db.Model):
         db.session.commit()
 
     @classmethod
-    def get_posts(id):
+    def get_posts(cls,id):
         '''
         Function that queries the Posts Table in the database and returns all the information from the Posts Table
         Returns:
             posts : all the information in the posts table
         '''
-        posts = Post.query.filter_by(title=title).all()
+        posts = Post.query.filter_by(id=id).all()
         return posts
 
     @classmethod
-    def get_posts(cls):
+    def get_all_posts(cls):
         '''
         Function that queries the Posts Table in the database and returns all the information from the Posts Table
         Returns:
@@ -111,15 +119,37 @@ class Post(db.Model):
         return f"Posts {self.id}','{self.date}')" 
         
 class Comment(db.Model):
-    '''
-    Comment class to define the feedback from users
-    '''
     __tablename__ = 'comments'
+
     id = db.Column(db.Integer, primary_key=True)
     comment = db.Column(db.Text())
     post_id = db.Column(db.Integer, db.ForeignKey('posts.id'))
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     date = db.Column(db.DateTime, default=datetime.utcnow)
+
+    def save_comment(self):
+        db.session.add(self)
+        db.session.commit()
+
+    @classmethod
+    def get_comments(cls, post_id):
+        comments = Comment.query.filter_by(post_id=post_id).all()
+        return comments
+
+    def delete(self):
+        db.session.delete(self)
+        db.session.commit()
+
+    def __repr__(self):
+        return f'Comments: {self.comment}'
+    '''
+    Comment class to define the feedback from users
+    '''
+    __tablename__ = 'comments'
+    id = db.Column(db.Integer, primary_key = True)
+    comment_content = db.Column(db.String)
+    post_id = db.Column(db.Integer, db.ForeignKey("posts.id",ondelete='CASCADE') )
+    user_id = db.Column(db.Integer, db.ForeignKey("users.id") )
 
     def save_comment(self):
         '''
@@ -129,7 +159,7 @@ class Comment(db.Model):
         db.session.commit()
 
     @classmethod
-    def get_comments(cls, post_id):
+    def get_comments(cls,post_id):
         '''
         Function that queries the Comments Table in the database and returns only information with the specified post id
         Args:
@@ -138,6 +168,7 @@ class Comment(db.Model):
             comments : all the information for comments with the specific post id
         '''
         comments = Comment.query.filter_by(post_id=post_id).all()
+
         return comments
 
     @classmethod
@@ -150,9 +181,5 @@ class Comment(db.Model):
     def __repr__(self):
         return f'Comments: {self.comment}'
 
-class Quotes:
-    def __init__(self, author, quote):
-        self.id = id
-        self.author = author
-        self.quote = quote
+
     

@@ -12,16 +12,21 @@
                 <img src="https://avataaars.io/?avatarStyle=Circle&topType=Hat&accessoriesType=Blank&facialHairType=Blank&clotheType=BlazerShirt&eyeType=EyeRoll&eyebrowType=UnibrowNatural&mouthType=Smile&skinColor=Black"
                     class="media-object" style="width:180px;background-color:inherit;">
             </div>
-            <br>
             <div class="media-body pt-2">
                 <h3 class="media-heading"><a href="post/new/{{ posts.id }}">{{ post.title }}</a></h4>
                     <h4 class="media-heading">{{ post.topic }}</h6>
                         <h5 class="media-content">{{ post.content }}</p>
                             <h6 class="media-name">Posted by ~ {{ post.username }}</h6>
                             <p class="media-date">Posted on ~ {{ post.date.strftime('%B %d, %Y') }}</p>
+                            <a style="font-size: 20px;" href="{{ url_for('main.view', id=post.id) }}"
+                                class="btn btn-sm btn-danger"> <i class="fa fa-eye"></i> View
+                                more</a>
+                            <a style="font-size: 20px;" href="{{ url_for('main.view', id=post.id) }}"
+                                class="btn btn-sm btn-info"><i class="fa fa-comment"></i> Comment</a>
             </div>
         </div>
     </div>
+</div>
 </div>
 {% endfor %}
 <footer class="page-footer font-small yellow pt-3">

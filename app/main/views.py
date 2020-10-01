@@ -79,9 +79,29 @@ def new_post():
         db.session.commit()
 
         title='New Blog Posted'
-        return redirect(url_for('main.index'))
+        return redirect(url_for('main.view'))
 
     return render_template('post.html',posts_form= form, quote= quote)
+
+@main.route('/post/delete/<int:id>', methods=['GET', 'POST'])
+@login_required
+def delete_post(id):
+    """
+    Delete a post from the database
+    """
+    post = Post.query.get_or_404(id)
+
+    if post.username != current_user:
+        abort(403)
+
+    post = Post.query.filter_by(id=id).first()    
+
+    db.session.delete(post)
+    db.session.commit()
+
+    flash('Your post has been deleted', 'successfully')
+    return redirect(url_for('main.posts'))
+
 
 @main.route('/Post/posts', methods=['GET', 'POST'])
 @login_required
@@ -97,28 +117,12 @@ def view(id):
     post_comments = Comment.query.filter_by(post_id=id).all()
     comment_form = CommentForm()
     if comment_form.validate_on_submit():
-        new_comment = Comment(post_id=id, comment=comment_form.comment.data, author=current_user)
+        new_comment = Comment(post_id=id, comment=comment_form.comment.data, username=current_user)
         new_comment.save_comment()
-    return render_template(' view.html', post=post, post_comments=post_comments, comment_form=comment_form)
 
-@main.route('/post/delete/<int:id>', methods=['GET', 'POST'])
-@login_required
-def delete_post(id):
-    """
-    Delete a post from the database
-    """
-    post = Post.query.get_or_404(id)
+    return render_template('view.html', post=post, post_comments=post_comments, comment_form=comment_form)
 
-    if post.author != current_user:
-        abort(403)
 
-    post = Post.query.filter_by(id=id).first()    
-
-    db.session.delete(post)
-    db.session.commit()
-
-    flash('Your post has been deleted', 'successfully')
-    return redirect(url_for('main.posts'))
 
 @main.route('/Update/<int:id>', methods=['GET', 'POST'])
 @login_required
@@ -127,7 +131,7 @@ def update_post(id):
     Update or edit a post in the database
     """
     post = Post.query.get_or_404(id)
-    if post.author != current_user:
+    if post.username != current_user:
         abort(403)
 
     form = PostForm()
@@ -155,19 +159,21 @@ def update_post(id):
 def comment(id):
     comment_form = CommentForm()
     if comment_form.validate_on_submit():
-        new_comment = Comment(post_id=id, comment=comment.form.data, author=current_user)
+        new_comment = Comment(post_id=id, comment=comment.form.data, username=current_user)
         new_comment.save_comment()
-    return render_template('post.html', comment_form=comment_form)  
+
+    return render_template('view.html', comment_form=comment_form)
 
 @main.route('/comment/delete/<int:post_id>' ,methods=['GET', 'POST'])
 @login_required
-def delete_comment(post_id):
+def delete_comment(id):
     
-    post = Post.query.filter_by(id=post_id).first()
-    comment = Comment.query.filter_by(post_id=post_id).first()
-
+    # post = Post.query.filter_by(id=id).first()
+    comment = Comment.get_or_404(id)
+    if comment.username != current_user:
+        abort(403)
     db.session.delete(comment)
     db.session.commit()
 
-    return redirect(url_for('main.posts', comment=comment, post=post, post_id=post_id))      
+    return redirect(url_for('main.index'))      
 

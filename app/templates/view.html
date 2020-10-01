@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8"></div>
+        <div class="jumbotron media bg-light">
+            <div class="media-left media-top">
+                <img src="https://avataaars.io/?avatarStyle=Circle&topType=Hat&accessoriesType=Blank&facialHairType=Blank&clotheType=BlazerShirt&eyeType=EyeRoll&eyebrowType=UnibrowNatural&mouthType=Smile&skinColor=Black"
+                    class="media-object" style="width:180px;background-color:inherit;">
+            </div>
+            <div class="media-body pt-2">
+                <h3 class="media-heading"><a href="#">{{ post.title }}</a></h4>
+                    <h4 class="media-heading">{{ post.topic }}</h6>
+                        <h5 class="media-content">{{ post.content }}</p>
+                            <h6 class="media-name">Posted by ~ {{ post.username }}</h6>
+                            <p class="media-date">Posted on ~ {{ post.date.strftime('%B %d, %Y') }}</p>
+                            <hr>
+                            {% if post.username == current_user %}
+                            <a href="{{ url_for('main.delete_post', id=post.id) }}" class="btn  btn-sm btn-danger"><i class="fa fa-trash"></i> delete</a>
+                            <a href="{{ url_for('main.update_post', id=post.id) }}" class="btn btn-sm btn-success"><i class="fa fa-check"></i> Edit Blog</a>
+                            {% endif %}
+            </div>
+        </div>
+        <div class="col-md-2"></div>
+        <div class="col-md-4" style="width: 80%">
+            {{wtf.quick_form(comment_form)}}
+        </div>
+    </div>
+</div>
+<br>
+
+<div class="container">
+    {% for comment in post_comments %}
+    <div class="media bg-light">
+        <div class="media-left media-top">
+            <img src="https://avataaars.io/?avatarStyle=Circle&topType=LongHairBun&accessoriesType=Prescription01&hairColor=SilverGray&facialHairType=Blank&clotheType=BlazerSweater&eyeType=Close&eyebrowType=RaisedExcitedNatural&mouthType=Serious&skinColor=DarkBrown"
+                class="media-object" style="width:180px;background-color:inherit;">
+        </div>
+        <div class="media-body pt-2">
+            <h3 class="media-heading">{{ comment.comment }}</h4>
+                <h6 class="media-name">Posted by ~ {{ comment.username }}</h6>
+                <p class="media-date">Posted on ~ {{ comment.date.strftime('%B %d, %Y') }}</p>
+                <hr>
+                {% if post.username == current_user %}
+                <a href="#" class="btn  btn-sm btn-danger"><i class="fa fa-trash"></i> delete</a>
+                <!-- <a href="#" class="btn btn-sm btn-success"><i class="fa fa-check"></i> Update</a> -->
+                {% endif %}
+        </div>
+    </div>
+    <br>
+    {% endfor %}
+</div>
+
+</div>
+{% endblock %}

@@ -27,32 +27,23 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent-333">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" style="color: royalblue;" href="{{(url_for('main.new_post'))}}">
-                        <strong>Home</strong> 
+                    <a class="nav-link" style="color: royalblue;" href="{{(url_for('main.posts'))}}">
+                        <strong>Home</strong>
                         <span class="sr-only">(current)</span>
                     </a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false"  style="color: royalblue;">
-                        <strong>Blogs</strong> 
+                        aria-haspopup="true" aria-expanded="false" style="color: royalblue;">
+                        <strong>Blogs</strong>
                     </a>
-                    <div class="dropdown-menu dropdown-default"
-                        aria-labelledby="navbarDropdownMenuLink-333">
+                    <div class="dropdown-menu dropdown-default" aria-labelledby="navbarDropdownMenuLink-333">
                         <a class="dropdown-item text-warning" href="{{(url_for('main.posts'))}}">
                             <i class="fas fa-binoculars mr-2"></i><strong>View Blogs</strong>
                         </a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item text-warning" href="#">
+                        <a class="dropdown-item text-warning" href="{{(url_for('main.new_post'))}}">
                             <i class="fas fa-folder-plus mr-2"></i></i><strong>Create a Blog</strong>
-                        </a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item text-warning" href="#">
-                            <i class="fas fa-comment mr-2"></i><strong>Create a Comment</strong>
-                        </a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item text-warning" href="#">
-                            <i class="fas fa-comments mr-2"></i><strong>View Comments</strong>
                         </a>
                     </div>
                 </li>

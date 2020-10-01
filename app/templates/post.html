@@ -10,7 +10,7 @@
 {% import "bootstrap/wtf.html" as wtf %}
 
 {% block content %}
-<div class="container pt-5">
+<div class="container mt-5">
     <div class="row">
         <div class="col-md-6 mt-5">
             <div class="card" style="position: relative">
@@ -20,7 +20,7 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <h2 class="quoted-author">{{ quote.author }}</h2>
+                    <h2 class="quoted-author">{{ quote.username }}</h2>
                     <p class="quoted-quote">{{ quote.quote }}</p>
                 </div>
             </div>
@@ -35,38 +35,40 @@
         </div>
     </div>
 </div>
-<br>
 <br><br>
-<!-- Footer -->
-<footer class="page-footer font-small blue mt-5">
+<br><br>
+<br>
+<footer class="page-footer font-small yellow pt-3 mt-5">
     <div class="container">
         <div class="row">
             <div class="col-md-12 py-3">
-                <div class="mb-2 flex-center">
+                <div class="flex-center">
                     <a class="fb-ic">
-                        <i class="fab fa-facebook-f fa-lg text-warning mr-md-5 mr-3 fa-2x"> </i>
+                        <i class="fab fa-facebook-f fa-lg text-dark mr-md-5 mr-3 fa-2x"> </i>
                     </a>
                     <a class="tw-ic">
-                        <i class="fab fa-twitter fa-lg text-warning mr-md-5 mr-3 fa-2x"> </i>
+                        <i class="fab fa-twitter fa-lg text-dark mr-md-5 mr-3 fa-2x"> </i>
                     </a>
                     <a class="gplus-ic">
-                        <i class="fab fa-google-plus-g fa-lg text-warning mr-md-5 mr-3 fa-2x"> </i>
+                        <i class="fab fa-google-plus-g fa-lg text-dark mr-md-5 mr-3 fa-2x"> </i>
                     </a>
                     <a class="li-ic">
-                        <i class="fab fa-linkedin-in fa-lg text-warning mr-md-5 mr-3 fa-2x"> </i>
+                        <i class="fab fa-linkedin-in fa-lg text-dark mr-md-5 mr-3 fa-2x"> </i>
                     </a>
                     <a class="ins-ic">
-                        <i class="fab fa-instagram fa-lg text-warning mr-md-5 mr-3 fa-2x"> </i>
+                        <i class="fab fa-instagram fa-lg text-dark mr-md-5 mr-3 fa-2x"> </i>
                     </a>
                     <a class="pin-ic">
-                        <i class="fab fa-pinterest fa-lg text-warning fa-2x"> </i>
+                        <i class="fab fa-pinterest fa-lg text-dark fa-2x"> </i>
                     </a>
                 </div>
             </div>
         </div>
     </div>
-    <div class="footer-copyright text-center py-3">© 2020 Copyright:
-        <a href="https://mdbootstrap.com/"> akumucollins</a>
+    <div class="footer-copyright text-center py-3">
+        <strong>© 2020 Copyright:
+            <a style="color: royalblue;" href="https://mdbootstrap.com/"> akumucollins</a>
+        </strong>
     </div>
 </footer>
 {% endblock %}
