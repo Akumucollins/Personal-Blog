@@ -160,7 +160,7 @@ def comment(id):
 @main.route('/comment/delete/<int:post_id>' ,methods=['GET', 'POST'])
 @login_required
 def delete_comment(post_id):
-
+    
     post = Post.query.filter_by(id=post_id).first()
     comment = Comment.query.filter_by(post_id=post_id).first()
 
