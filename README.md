@@ -17,7 +17,7 @@
 ---
 
 ## Live Link
-[View Site]( https://akumublogger.herokuapp.com)
+[View Site]( https://akumu-blogger.herokuapp.com/)
 
 ***
 
