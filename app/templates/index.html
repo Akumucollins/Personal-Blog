@@ -1,43 +1,59 @@
 {% extends 'base.html' %}
-{% import 'macros.html' as macro%}
-
 {% block styles %}{{ super() }}
 <link rel="stylesheet" href="{{url_for('static',filename='css/index.css')}}">
 {% endblock %}
 
 {% block content %}
-<div class="row text-center mt-2">
-    <div class="col-lg-8 col-md-10 mx-auto">
-        <div class="cards">
-            {% for post in posts %}
-            <div class="card">
-                <div class="card-header">
-                    <a href="post/new/{{ post.id }}">
-                        <h2 class="title">👨‍💻&nbsp;{{ post.title }}</h2>
-                    </a>
-                </div>
-                <div class="card-body">
-                    <div class="card-title">
-                        <h3>🗞️&nbsp;{{ post.topic }}</h3>
-                    </div>
-                    <div class="card-content">
-                        <h5 class="text-warning">📰&nbsp;{{ post.content }}</h5>
-                    </div>
-                </div>
-                <div class="card-footer">
-                    <strong>
-                        <p>📆&nbsp;Posted by <b class="text-info">{{ post.username }}</b>  on  {{ post.date.strftime('%B %d, %Y') }}</p>
-                    </strong>
-                </div>
+{% for post in posts %}
+<div class="body-content">
+    <div class="container">
+        <div class="jumbotron media bg-light">
+            <div class="media-left media-top">
+                <img src="https://avataaars.io/?avatarStyle=Circle&topType=Hat&accessoriesType=Blank&facialHairType=Blank&clotheType=BlazerShirt&eyeType=EyeRoll&eyebrowType=UnibrowNatural&mouthType=Smile&skinColor=Black"
+                    class="media-object" style="width:180px;background-color:inherit;">
             </div>
-            <br>
-            {% endfor %}
+            <div class="media-body pt-2">
+                <h3 class="media-heading"><a href="post/new/{{ posts.id }}">{{ post.title }}</a></h4>
+                <h4 class="media-heading">{{ post.topic }}</h6>
+                <h5 class="media-content">{{ post.content }}</p>
+                    <h6 class="media-name">Posted by ~ {{ post.username }}</h6>
+                    <p class="media-date">Posted on ~ {{ post.date.strftime('%B %d, %Y') }}</p>
+            </div>
         </div>
     </div>
 </div>
-<footer class="page-footer font-small blue mt-1">
-    <div class="footer-copyright text-center py-2">© 2020 Copyright:
-        <a href="https://mdbootstrap.com/">akumucollins</a>
+{% endfor %}
+<!-- Footer -->
+<footer class="page-footer font-small blue">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 py-3">
+                <div class="mb-2 flex-center">
+                    <a class="fb-ic">
+                        <i class="fab fa-facebook-f fa-lg text-warning mr-md-5 mr-3 fa-2x"> </i>
+                    </a>
+                    <a class="tw-ic">
+                        <i class="fab fa-twitter fa-lg text-warning mr-md-5 mr-3 fa-2x"> </i>
+                    </a>
+                    <a class="gplus-ic">
+                        <i class="fab fa-google-plus-g fa-lg text-warning mr-md-5 mr-3 fa-2x"> </i>
+                    </a>
+                    <a class="li-ic">
+                        <i class="fab fa-linkedin-in fa-lg text-warning mr-md-5 mr-3 fa-2x"> </i>
+                    </a>
+                    <a class="ins-ic">
+                        <i class="fab fa-instagram fa-lg text-warning mr-md-5 mr-3 fa-2x"> </i>
+                    </a>
+                    <a class="pin-ic">
+                        <i class="fab fa-pinterest fa-lg text-warning fa-2x"> </i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer-copyright text-center py-3">© 2020 Copyright:
+        <a href="https://mdbootstrap.com/"> akumucollins</a>
     </div>
 </footer>
+
 {% endblock %}
