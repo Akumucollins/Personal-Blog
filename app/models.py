@@ -78,7 +78,7 @@ class Post(db.Model):
     topic = db.Column(db.String(255))
     content = db.Column(db.Text)
     date = db.Column(db.DateTime(250), default=datetime.utcnow)
-    user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
+    user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable = False)
 
     def save_post(self):
         '''
@@ -97,5 +97,42 @@ class Post(db.Model):
         posts = Post.query.filter_by(title=title).all()
         return posts
 
+    @classmethod
+    def get_posts(cls):
+        '''
+        Function that queries the Posts Table in the database and returns all the information from the Posts Table
+        Returns:
+            posts : all the information in the posts table
+        '''
+        posts = Post.query.order_by(user_id).all()
+        return posts    
+
     def __repr__(self):
-        return f"Posts {self.id}','{self.date}')"    
+        return f"Posts {self.id}','{self.date}')" 
+        
+class Comment(db.Model):
+    __tablename__ = 'comments'
+    id = db.Column(db.Integer, primary_key=True)
+    comment = db.Column(db.Text())
+    post_id = db.Column(db.Integer, db.ForeignKey('posts.id'))
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    date = db.Column(db.DateTime, default=datetime.utcnow)
+    def save_comment(self):
+        db.session.add(self)
+        db.session.commit()
+    @classmethod
+    def get_comments(cls, post_id):
+        comments = Comment.query.filter_by(post_id=post_id).all()
+        return comments
+    def delete(self):
+        db.session.delete(self)
+        db.session.commit()
+    def __repr__(self):
+        return f'Comments: {self.comment}'
+
+class Quotes:
+    def __init__(self, author, quote):
+        self.id = id
+        self.author = author
+        self.quote = quote
+    
