@@ -1,10 +1,13 @@
 asgiref==3.2.10
 astroid==2.4.2
 autopep8==1.5.4
+beautifulsoup4==4.9.3
+confusable-homoglyphs==3.2.0
 dj-database-url==0.5.0
 Django==3.1.2
-django-bootstrap3==14.1.0
+django-bootstrap4==2.3.0
 django-heroku==0.3.1
+django-registration==3.1.1
 gunicorn==20.0.4
 importlib-metadata==1.7.0
 isort==5.5.4
@@ -14,8 +17,10 @@ Pillow==7.2.0
 psycopg2==2.8.6
 pycodestyle==2.6.0
 pylint==2.6.0
+python-decouple==3.3
 pytz==2020.1
 six==1.15.0
+soupsieve==2.0.1
 sqlparse==0.3.1
 toml==0.10.1
 typed-ast==1.4.1

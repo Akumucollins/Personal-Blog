@@ -1,7 +1,6 @@
 from django.db import models
 import datetime as dt
 
-# Create your models here.
 class Editor(models.Model):
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=30)
@@ -10,8 +9,6 @@ class Editor(models.Model):
   
     def __str__(self):
         return self.first_name
-    
-        
 
     class Meta:
         ordering = ['first_name']  
@@ -48,3 +45,8 @@ class Article(models.Model):
     def search_by_title(cls, search_term):
         news = cls.objects.filter(title__icontains=search_term)
         return news        
+
+class NewsLetterRecipients(models.Model):
+    name = models.CharField(max_length = 30)
+    email = models.EmailField()
+
